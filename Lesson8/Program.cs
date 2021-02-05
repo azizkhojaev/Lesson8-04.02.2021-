@@ -6,10 +6,10 @@ namespace Lesson8
 {
     class Person
     {  
-        public void con( string con)
+        public void con( string con)//this is the only method that works with DB
         {
             string conString = @"Data Source=FA; Initial Catalog=master;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(conString);
+            SqlConnection connection = new SqlConnection(conString);// connecting to DB
 
             try
             {
@@ -17,11 +17,11 @@ namespace Lesson8
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     SqlCommand command = connection.CreateCommand();
-                    command.CommandText = con ;
+                    command.CommandText = con ;// con is a string that sended from other methods to send request to DB
                     var reader = command.ExecuteReader();
                     Console.WriteLine("Great!");
 
-                    while (reader.Read())
+                    while (reader.Read())// this is just for Showing info to console, while loop works when something returns from DB
                     {
                         Console.WriteLine("ID = " + reader["id"]);
                         Console.WriteLine("FirstName: " + reader["FirstName"]);
@@ -85,9 +85,9 @@ namespace Lesson8
             con(comtext);
         }
     }
-    class Homework
+    class Program
     {
-        public void Task1()
+        static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Table managemant ");
             Console.WriteLine("1. Insert ");
@@ -145,14 +145,6 @@ namespace Lesson8
             }
             else
                 Console.WriteLine("Something is going wrong try again!");
-        }
-    }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var DZ = new Homework();
-            DZ.Task1();
         }
     }
 }
